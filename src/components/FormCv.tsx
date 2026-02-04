@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PersonalForm from "./form/PersonalForm";
+import type { PersonalInfo } from "../types/PersonalInfo";
 
 export default function FormCv() {
   const steps = [
@@ -11,40 +12,44 @@ export default function FormCv() {
 
   const [activeStep, setActiveStep] = useState(1);
 
-  const toggleStep = (stepId: number) => {
-    setActiveStep(stepId);
-  };
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
+    nombreCompleto: "",
+    correo: "",
+    tituloProfesional: "",
+    telefono: "",
+    ubicacion: "",
+    sitioWeb: "",
+    linkedin: "",
+    github: "",
+    resumenProfesional: "",
+  });
 
   return (
-    <div className="p-4 dark:bg-gray-900 dark:text-gray-100 transition-all">
+    <div className="p-4 dark:bg-gray-900 dark:text-gray-100">
       {/* Steps */}
-      <div className="flex justify-center gap-4 my-4">
+      <div className="flex justify-center gap-6 mb-6">
         {steps.map((step) => (
           <button
-            onClick={() => toggleStep(step.id)}
             key={step.id}
-            className={`
-              px-4 py-2
-              font-medium
-              border-b-4
-              transition-colors duration-300
-              ${
-                step.id === activeStep
-                  ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                  : "border-transparent text-gray-800 dark:text-gray-200 hover:border-gray-300 dark:hover:border-gray-400"
-              }
-              cursor-pointer
-            `}
+            onClick={() => setActiveStep(step.id)}
+            className={`px-4 py-2 border-b-4 transition-all ${
+              step.id === activeStep
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-500 hover:border-gray-300"
+            }`}
           >
             {step.name}
           </button>
         ))}
       </div>
 
-      {/* Contenido del step */}
-      <div className="mt-6">
-        {activeStep === 1 && <PersonalForm />}
-      </div>
+      {/* Contenido */}
+      {activeStep === 1 && (
+        <PersonalForm
+          personalInfo={personalInfo}
+          setPersonalInfo={setPersonalInfo}
+        />
+      )}
     </div>
   );
 }
