@@ -1,22 +1,52 @@
+import { useState } from "react";
 import FormCv from "../components/FormCv";
 import Header from "../components/Header";
+import CvPreview from "../components/CvPreview";
+import type { PersonalInfo } from "../types/PersonalInfo";
+import type { Experience, Education, Skill, Certification } from "../types/CvData";
 
 export default function Home() {
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
+    nombreCompleto: "",
+    correo: "",
+    tituloProfesional: "",
+    telefono: "",
+    ubicacion: "",
+    sitioWeb: "",
+    linkedin: "",
+    github: "",
+    resumenProfesional: "",
+  });
+
+  const [experiencias, setExperiencias] = useState<Experience[]>([]);
+  const [educaciones, setEducaciones] = useState<Education[]>([]);
+  const [habilidadesTecnicas, setHabilidadesTecnicas] = useState<Skill[]>([]);
+  const [idiomas, setIdiomas] = useState<Skill[]>([]);
+  const [certificaciones, setCertificaciones] = useState<Certification[]>([]);
+
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <Header />
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 p-6 flex-1">
         {/* Formulario */}
-        <div className=" dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <FormCv />
+        <div className="dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <FormCv
+            personalInfo={personalInfo}
+            setPersonalInfo={setPersonalInfo}
+          />
         </div>
 
         {/* Vista previa */}
-        <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md flex items-center justify-center">
-          <p className="text-gray-700 dark:text-gray-300 text-center">
-            Vista previa del CV aparecerá aquí.
-          </p>
+        <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+          <CvPreview 
+            personalInfo={personalInfo}
+            experiencias={experiencias}
+            educaciones={educaciones}
+            habilidadesTecnicas={habilidadesTecnicas}
+            idiomas={idiomas}
+            certificaciones={certificaciones}
+          />
         </div>
       </div>
 

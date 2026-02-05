@@ -19,8 +19,8 @@ export default function PersonalForm({
     }));
   };
 
-  const inputClass =
-    "w-full p-3 border dark:text-white text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition";
+const inputClass =
+  "w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition bg-white text-black dark:bg-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-400";
 
   const fields = [
     {
