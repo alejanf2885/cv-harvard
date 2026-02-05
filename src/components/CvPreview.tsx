@@ -4,7 +4,7 @@ import type { Experience, Education, Skill, Certification } from "../types/CvDat
 import { useDebounce } from "../hooks/useDebounce";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { Download } from "lucide-react";
+import { Check, Download, RotateCcw } from "lucide-react";
 
 interface CvPreviewProps {
   personalInfo: PersonalInfo;
@@ -150,7 +150,7 @@ export default function CvPreview({
       {/* Botón de descarga */}
       <div className="mb-4 flex justify-between items-center">
         <div className="text-sm text-gray-600 dark:text-gray-400">
-          {isGenerating ? "🔄 Generando PDF..." : "✓ PDF actualizado"}
+          {isGenerating ? <RotateCcw size={16} className="inline-block mr-2 animate-spin" /> : <><Check size={16} className="inline-block mr-2" /> PDF actualizado</>}
         </div>
         <button
           onClick={downloadPDF}
@@ -227,14 +227,14 @@ export default function CvPreview({
                 className="font-bold mb-2"
                 style={{ 
                   fontFamily: "Times New Roman, serif",
-                  fontSize: "11pt",
+                  fontSize: "14pt",
                   fontWeight: "bold",
                   marginBottom: "8px"
                 }}
               >
                  RESUMEN
               </h2>
-              <hr className="my-2" />
+              <hr />
               <p 
                 style={{ 
                   fontFamily: "Times New Roman, serif",

@@ -1,15 +1,29 @@
 import { useState } from "react";
 import PersonalForm from "./form/PersonalForm";
 import type { PersonalInfo } from "../types/PersonalInfo";
+import type { Experience } from "../types/Experiencie";
+import type Education from "../types/Education";
+import type Skill from "../types/Skill";
+import type Certification from "../types/Certification";
 
 interface FormCvProps {
   personalInfo: PersonalInfo;
   setPersonalInfo: React.Dispatch<React.SetStateAction<PersonalInfo>>;
+  setExperiencias: React.Dispatch<React.SetStateAction<Experience[]>>;
+  setEducaciones: React.Dispatch<React.SetStateAction<Education[]>>;
+  setHabilidadesTecnicas: React.Dispatch<React.SetStateAction<Skill[]>>;
+  setIdiomas: React.Dispatch<React.SetStateAction<Skill[]>>;
+  setCertificaciones: React.Dispatch<React.SetStateAction<Certification[]>>;
 }
 
 export default function FormCv({
   personalInfo,
   setPersonalInfo,
+  setExperiencias,
+  setEducaciones,
+  setHabilidadesTecnicas,
+  setIdiomas,
+  setCertificaciones,
 }: FormCvProps) {
   const steps = [
     { id: 1, name: "Personal" },
@@ -45,6 +59,7 @@ export default function FormCv({
           personalInfo={personalInfo}
           setPersonalInfo={setPersonalInfo}
         />
+
       )}
     </div>
   );

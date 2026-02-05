@@ -24,21 +24,28 @@ export default function Home() {
   const [idiomas, setIdiomas] = useState<Skill[]>([]);
   const [certificaciones, setCertificaciones] = useState<Certification[]>([]);
 
+
+
   return (
     <div className="min-h-screen flex flex-col dark:bg-gray-900">
       <Header />
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 p-6 flex-1">
         {/* Formulario */}
-        <div className="dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className=" border border-gray-300 dark:border-gray-700 p-6 rounded-lg shadow-md">
           <FormCv
             personalInfo={personalInfo}
             setPersonalInfo={setPersonalInfo}
+            setExperiencias={setExperiencias}
+            setEducaciones={setEducaciones}
+            setHabilidadesTecnicas={setHabilidadesTecnicas}
+            setIdiomas={setIdiomas}
+            setCertificaciones={setCertificaciones}
           />
         </div>
 
         {/* Vista previa */}
-        <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md">
+        <div className=" border border-gray-300 dark:border-gray-700 p-6 rounded-lg shadow-md">
           <CvPreview 
             personalInfo={personalInfo}
             experiencias={experiencias}
